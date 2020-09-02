@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Post>
+
+@{ 
+    ViewBag.Title = "Blog Website";
+    ViewBag.Description = "This is an awesome blog with lots of funny things!";
+    ViewBag.Keywords = "something like traveling tags";
+}
+
+@*<h2>Home Page!</h2>
+
+<img src="~/content/static/chibi1.jpg" width="500" />*@
+<div class="main-img">
+    <span class="title title-background">Inspirational quotes</span>
+</div>
+
+<div class="container">
+
+    @foreach (var post in Model)
+    {
+        <a class="post post-hover" asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
+            <span class="post-title">
+                @post.Title <br/>
+                @post.Created
+            </span>
+        </a>
+    }
+
+</div>

@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.Description" />
+    <meta name="keywords" content="@ViewBag.Keywords" />
+
+    <environment include="Development">
+        <link href="~/css/site.css" rel="stylesheet" />
+    </environment>
+
+    <environment include="Production">
+        <link href="~/css/site.min.css" rel="stylesheet" />
+    </environment>
+</head>
+<body>
+    <div class="wrapper">
+        <div>
+            <nav>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Panel" asp-action="Index">Admin panel</a>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Panel" asp-action="Edit">Create post</a>
+                    <a asp-controller="Auth" asp-action="Logout">Logout</a>
+                }
+                else
+                {
+                    <a asp-controller="Auth" asp-action="Login">Sign In</a>
+                }
+            </nav>
+        </div>
+        <div class="main">
+            @RenderBody()
+        </div>
+        <footer>
+            <span class="footer-text">Made by Kristina</span>
+            <div class="footer-text">
+                <a href="https://github.com/Kristina-11">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.flaticon.com%2Ficons%2Fpng%2F512%2F889%2F889192.png&f=1&nofb=1" width="25" />
+                </a>
+                <a href="https://www.linkedin.com/in/kristina91jovanovic11/">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn3.iconfinder.com%2Fdata%2Ficons%2F2018-social-media-logotypes%2F1000%2F2018_social_media_popular_app_logo_linkedin-512.png&f=1&nofb=1" width="25" />
+                </a>
+            </div>
+        </footer>
+    </div>
+    @RenderSection("scripts", false)
+</body>
+</html>
