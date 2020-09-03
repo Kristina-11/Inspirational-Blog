@@ -24,4 +24,19 @@
     <div class="post-body">
         @Html.Raw(Model.Body)
     </div>
+
+    <div class="comment-section">
+        @{
+            await Html.RenderPartialAsync("_Comments", new CommentViewModel { PostId = Model.Id });
+        }
+
+        @foreach(var c in Model.Comments)
+        {
+            <div class="comment">
+                <h4>@c.VisitorName</h4>
+                <section>@c.Message</section>
+                <aside>@c.Created</aside>
+            </div>
+        }
+    </div>
 </div>

@@ -1,4 +1,5 @@
 ﻿using Blog.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,9 @@ namespace Blog.Data.Repository
 
         public Post GetPost(int id)
         {
-            return _repo.Posts.FirstOrDefault(p => p.Id == id);
+            return _repo.Posts
+                .Include(p => p.Comments)
+                .FirstOrDefault(p => p.Id == id);
         }
 
         public void RemovePost(int id)

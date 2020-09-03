@@ -2,6 +2,8 @@
 using Blog.Data.FileManager;
 using Blog.Data.Repository;
 using Blog.Models;
+using Blog.Models.Comments;
+using Blog.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -40,6 +42,38 @@ namespace Blog.Controllers
         {
             var mime = image.Substring(image.LastIndexOf(".") + 1);
             return new FileStreamResult(_fileManager.ImageStream(image), $"image/{mime}");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Comment(CommentViewModel cvm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Post", new { id = cvm.PostId });
+            }
+
+            var post = _repo.GetPost(cvm.PostId);
+            if (cvm.PostId > 0) 
+            {
+                post.Comments = post.Comments ?? new List<Comment>();
+                post.Comments.Add(new Comment 
+                { 
+                    VisitorName = cvm.VisitorName,
+                    Message = cvm.Message,
+                    Created = DateTime.Now
+                });
+
+                if (string.IsNullOrEmpty(cvm.Message))
+                {
+                    Console.WriteLine("You can't leave message field empty.");
+                }
+
+                _repo.UpdatePost(post);
+            }
+
+            await _repo.SaveChangesAsync();
+
+            return RedirectToAction("Post", new { id = cvm.PostId });
         }
     }
 }
