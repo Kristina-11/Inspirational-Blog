@@ -1,0 +1,27 @@
+﻿@model RegistarViewModel
+
+@{
+
+}
+
+<link href="~/css/login.css" rel="stylesheet" />
+
+<h1>Sign Up</h1>
+<form class="login-form" asp-controller="Auth" asp-action="Registar" method="post">
+    <div>
+        <label>Email</label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label>Password</label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div>
+        <label>Confirm Password</label>
+        <input asp-for="ConfirmPassword" />
+        <span asp-validation-for="ConfirmPassword"></span>
+    </div>
+    <input type="submit" value="Sign Up" />
+</form>
