@@ -80,7 +80,7 @@ nav a {
 
 .post {
     margin: 1em;
-    padding: 10px;
+    padding: 2em;
     position: relative;
     display: flex;
     height: auto;
@@ -106,7 +106,7 @@ nav a {
 }
 
 .post-body {
-    padding: 10px;
+    padding: 1.5em;
     text-align: center;
 }
 
@@ -114,6 +114,11 @@ nav a {
     border-bottom: 2px solid white;
     padding: 1em;
     margin: 1em;
+}
+
+.login {
+    padding: 1em;
+    border-top: 2px solid white;
 }
 
 footer {
