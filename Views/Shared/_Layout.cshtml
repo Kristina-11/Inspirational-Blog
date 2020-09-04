@@ -8,30 +8,42 @@
     <meta name="description" content="@ViewBag.Description" />
     <meta name="keywords" content="@ViewBag.Keywords" />
     <link href="~/css/login.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
 
     <environment include="Development">
-            <link href="~/css/site.css" rel="stylesheet" />
-        </environment>
+        <link href="~/css/site.css" rel="stylesheet" />
+    </environment>
 
-        <environment include="Production">
-            <link href="~/css/site.min.css" rel="stylesheet" />
-        </environment>
+    <environment include="Production">
+        <link href="~/css/site.min.css" rel="stylesheet" />
+    </environment>
 </head>
 <body>
     <div class="wrapper">
         <div>
             <nav>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a style="float:left">
+                        Welcome @User.Identity.Name
+                    </a>
+                }
                 <a asp-controller="Home" asp-action="Index">Home</a>
-                <a asp-controller="Panel" asp-action="Index">Admin panel</a>
+
+                @if (User.Identity.Name == "admin")
+                {
+                    <a asp-controller="Panel" asp-action="Index">Admin panel</a>
+                    <a asp-controller="Panel" asp-action="Edit">Create post</a>
+                }
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a asp-controller="Panel" asp-action="Edit">Create post</a>
                     <a asp-controller="Auth" asp-action="Logout">Logout</a>
                 }
                 else
                 {
                     <a asp-controller="Auth" asp-action="Login">Sign In</a>
+                    <a asp-controller="Auth" asp-action="Registar">Sign Up</a>
                 }
             </nav>
         </div>
