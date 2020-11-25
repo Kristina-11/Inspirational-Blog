@@ -7,4 +7,5 @@ Used: .Net Core 3.1, Entity Framework Core 3.1.7, Trumbowyg-master <br/><br/>
   ADMIN: admin, password <br/>
   USER: testing@test, testing <br><br/>
   <i>Or feel free to registar and test that part, it does not include activation link.</i>
-</div>
+</div> <br/><br/>
+Site is published at: kristina9111-001-site1.ctempurl.com/
